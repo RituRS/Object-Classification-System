@@ -29,36 +29,26 @@ pip install streamlit tensorflow pillow numpy
 
 ## Setup
 Clone the Repository:
-git clone https://github.com/yourusername/object-classification-system.git
+git clone https://github.com/RituRS/Object-Classification-System.git
 cd object-classification-system
 Place the Models:
 Ensure that the trained model files (cnn_model.h5 and mobilenet_model.h5) are located in the root directory of the project.
 
 Run the Streamlit App:
 streamlit run app.py
-Access the Application:
-Open a web browser and go to http://localhost:8501 to interact with the Object Classification System.
-Usage
+
+## Usage
 Upload an Image: Click on "Upload an image..." and select an image file to classify.
 Select a Model: Choose between "CNN" and "MobileNetV2" from the model dropdown.
 View Predictions: After uploading the image, the application will display the predicted class along with confidence scores for each class.
 Visualize Performance Metrics: Use the dropdown to select the type of visualization you want to see, such as confusion matrix, precision-recall curve, ROC curve, etc.
+
 Example
 Here is a sample output after uploading an image and selecting a model:
 
 Model Prediction: Dog
 Confidence Scores: (Scroll horizontally to view scores for all classes)
-Troubleshooting
-Model Not Loading: Ensure the model files (cnn_model.h5 and mobilenet_model.h5) are correctly placed in the root directory and are accessible.
-Visualizations Not Displaying: Make sure the visualization images are saved in the specified path (C:\\Users\\RITUJA\\CIFAR10).
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 Acknowledgements
 The CIFAR-10 dataset used for evaluation.
 TensorFlow and Streamlit for the powerful tools used in this application.
-
-### Notes:
-- **Customization**: Replace `https://github.com/yourusername/object-classification-system.git` with the actual URL of your repository.
-- **Model Paths**: Ensure that the paths for the model files and visualizations are correctly specified based on your local setup.
-- **License**: Adjust the license section according to the actual license you choose for your project.
