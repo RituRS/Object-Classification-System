@@ -6,8 +6,8 @@ import gdown
 import os
 
 # Define model file paths
-cnn_model_path = 'models/cnn_model.h5'
-mobilenet_model_path = 'models/mobilenet_model.h5'
+cnn_model_path = 'cnn_model.h5'
+mobilenet_model_path = 'mobilenet_model.h5'
 
 # Define visualization directory
 visualization_dir = 'visualizations'
