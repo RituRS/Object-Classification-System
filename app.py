@@ -9,9 +9,6 @@ import os
 cnn_model_path = 'cnn_model.h5'
 mobilenet_model_path = 'mobilenet_model.h5'
 
-# Define visualization directory
-visualization_dir = 'visualizations'
-
 # Function to download models
 def download_model(url, destination):
     if not os.path.exists(destination):
@@ -90,12 +87,12 @@ if st.button("Show Visualization"):
 
     # Paths
     paths = {
-        "Confusion Matrix": os.path.join(visualization_dir, f'{prefix}confusion_matrix.png'),
-        "Precision-Recall Curve": os.path.join(visualization_dir, f'{prefix}precision_recall_curve.png'),
-        "ROC Curve": os.path.join(visualization_dir, f'{prefix}roc_curve.png'),
-        "Training and Validation Metrics": os.path.join(visualization_dir, f'{prefix}metrics_plot.png'),
-        "Weighted Averages": os.path.join(visualization_dir, f'{prefix}weighted_averages.png'),
-        "Dataset Distribution": os.path.join(visualization_dir, 'dataset_distribution.png')
+        "Confusion Matrix": f'{prefix}confusion_matrix.png',
+        "Precision-Recall Curve": f'{prefix}precision_recall_curve.png',
+        "ROC Curve": f'{prefix}roc_curve.png',
+        "Training and Validation Metrics": f'{prefix}metrics_plot.png',
+        "Weighted Averages": f'{prefix}weighted_averages.png',
+        "Dataset Distribution": 'dataset_distribution.png'
     }
 
     # Display the selected visualization
