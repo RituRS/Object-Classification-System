@@ -6,8 +6,11 @@ import gdown
 import os
 
 # Define model file paths
-cnn_model_path = 'cnn_model.h5'
-mobilenet_model_path = 'mobilenet_model.h5'
+cnn_model_path = 'models/cnn_model.h5'
+mobilenet_model_path = 'models/mobilenet_model.h5'
+
+# Define visualization directory
+visualization_dir = 'visualizations'
 
 # Function to download models
 def download_model(url, destination):
@@ -79,67 +82,31 @@ if uploaded_file is not None:
 if st.button("Show Visualization"):
     st.write(f"### Visualization for {selected_model_name}")
 
-    # Define paths for saved images using absolute paths
-    base_path = 'C:\\Users\\RITUJA\\CIFAR10'
+    # Define paths for saved images using relative paths
     if selected_model_name == 'CNN':
         prefix = 'cnn_model_'
     else:
         prefix = 'mobilenetv2_model_'
 
-    confusion_matrix_path = os.path.join(base_path, f'{prefix}confusion_matrix.png')
-    precision_recall_path = os.path.join(base_path, f'{prefix}precision_recall_curve.png')
-    roc_curve_path = os.path.join(base_path, f'{prefix}roc_curve.png')
-    training_metrics_path = os.path.join(base_path, f'{prefix}metrics_plot.png')
-    weighted_averages_path = os.path.join(base_path, f'{prefix}weighted_averages.png')
-    dataset_distribution_path = os.path.join(base_path, 'dataset_distribution.png')
+    # Paths
+    paths = {
+        "Confusion Matrix": os.path.join(visualization_dir, f'{prefix}confusion_matrix.png'),
+        "Precision-Recall Curve": os.path.join(visualization_dir, f'{prefix}precision_recall_curve.png'),
+        "ROC Curve": os.path.join(visualization_dir, f'{prefix}roc_curve.png'),
+        "Training and Validation Metrics": os.path.join(visualization_dir, f'{prefix}metrics_plot.png'),
+        "Weighted Averages": os.path.join(visualization_dir, f'{prefix}weighted_averages.png'),
+        "Dataset Distribution": os.path.join(visualization_dir, 'dataset_distribution.png')
+    }
 
-    if visualization_type == "Confusion Matrix":
-        try:
-            st.image(confusion_matrix_path, caption=f"{selected_model_name} - Confusion Matrix", use_column_width=True)
-        except FileNotFoundError:
-            st.write("Confusion matrix image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
-
-    elif visualization_type == "Precision-Recall Curve":
-        try:
-            st.image(precision_recall_path, caption=f"{selected_model_name} - Precision-Recall Curve", use_column_width=True)
-        except FileNotFoundError:
-            st.write("Precision-recall curve image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
-
-    elif visualization_type == "ROC Curve":
-        try:
-            st.image(roc_curve_path, caption=f"{selected_model_name} - ROC Curve", use_column_width=True)
-        except FileNotFoundError:
-            st.write("ROC curve image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
-
-    elif visualization_type == "Training and Validation Metrics":
-        try:
-            st.image(training_metrics_path, caption=f"{selected_model_name} - Training and Validation Metrics", use_column_width=True)
-        except FileNotFoundError:
-            st.write("Training metrics image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
-
-    elif visualization_type == "Weighted Averages":
-        try:
-            st.image(weighted_averages_path, caption=f"{selected_model_name} - Weighted Averages of Metrics", use_column_width=True)
-        except FileNotFoundError:
-            st.write("Weighted averages plot image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
-
-    elif visualization_type == "Dataset Distribution":
-        try:
-            st.image(dataset_distribution_path, caption="Dataset Distribution", use_column_width=True)
-        except FileNotFoundError:
-            st.write("Dataset distribution plot image not found.")
-        except Exception as e:
-            st.write(f"An error occurred: {e}")
+    # Display the selected visualization
+    if visualization_type in paths:
+        path = paths[visualization_type]
+        if os.path.isfile(path):
+            st.image(path, caption=f"{selected_model_name} - {visualization_type}", use_column_width=True)
+        else:
+            st.write(f"{visualization_type} image not found. Please make sure the file is uploaded and try again.")
+    else:
+        st.write("Please select a valid visualization type.")
 
 st.write("### About")
 st.write(
