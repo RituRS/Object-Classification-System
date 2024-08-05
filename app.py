@@ -9,6 +9,9 @@ import os
 cnn_model_path = 'cnn_model.h5'
 mobilenet_model_path = 'mobilenet_model.h5'
 
+# Define visualization directory
+visualization_dir = 'visualizations'
+
 # Function to download models
 def download_model(url, destination):
     if not os.path.exists(destination):
