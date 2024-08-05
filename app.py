@@ -2,31 +2,23 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
-import os
 import gdown
+import os
 
-# Define paths for models
+# Define model file paths
 cnn_model_path = 'cnn_model.h5'
 mobilenet_model_path = 'mobilenet_model.h5'
 
-# Define Google Drive file IDs
-cnn_model_id = '1LyVJ_ZkvSXWaDHqYZRCRb5fpI8_ahAII'
-mobilenet_model_id = '1WbjemJD0ckfTIvnT0Jx8qxiE7z-xCjAU'
+# Function to download models
+def download_model(url, destination):
+    if not os.path.exists(destination):
+        gdown.download(url, destination, quiet=True)
 
-# Function to download models from Google Drive
-def download_model(file_id, output_path):
-    if not os.path.exists(output_path):
-        url = f'https://drive.google.com/uc?id={file_id}'
-        gdown.download(url, output_path, quiet=False)
-        st.write(f"Downloaded model to {output_path}")
-    else:
-        st.write(f"Model already downloaded: {output_path}")
+# Download models if not present
+download_model('https://drive.google.com/uc?id=1LyVJ_ZkvSXWaDHqYZRCRb5fpI8_ahAII', cnn_model_path)
+download_model('https://drive.google.com/uc?id=1WbjemJD0ckfTIvnT0Jx8qxiE7z-xCjAU', mobilenet_model_path)
 
-# Download models
-download_model(cnn_model_id, cnn_model_path)
-download_model(mobilenet_model_id, mobilenet_model_path)
-
-# Load trained models using TensorFlow
+# Load trained models
 cnn_model = tf.keras.models.load_model(cnn_model_path)
 mobilenet_model = tf.keras.models.load_model(mobilenet_model_path)
 
