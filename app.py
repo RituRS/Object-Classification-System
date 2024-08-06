@@ -107,7 +107,7 @@ if st.button("Show Visualization"):
 
 st.write("### About")
 st.write(
-    "The Object Recognition System leverages deep learning models to classify images into predefined categories. "
+    "The Object Classification System leverages deep learning models to classify images into predefined categories. "
     "The app uses two advanced models: CNN and MobileNetV2. After uploading an image, you can get predictions "
     "from the selected model and view detailed performance metrics including confusion matrix, precision-recall curve, ROC curve, training metrics, weighted averages of metrics, "
     "and dataset distribution. The CIFAR-10 dataset, which includes classes such as airplane, automobile, bird, cat, deer, "
